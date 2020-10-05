@@ -47,13 +47,19 @@ if (!action) {
 if (!input) {
     ioStreams.input = stdin
 } else if (input) {
-    ioStreams.input = buildFileInputStream(input)
+    ioStreams.input = buildFileInputStream(input, () => {
+        process.stderr.write('can not open or access file')
+        process.exit(1)
+    })
 }
 
 if (!output) {
     ioStreams.output = stdout
 } else if (output) {
-    ioStreams.output = buildFileOutputStream(output)
+    ioStreams.output = buildFileOutputStream(output, () => {
+        process.stderr.write('can not open or access file')
+        process.exit(1)
+    })
 }
 
 const { input: inputStream, output: outputStream } = ioStreams
