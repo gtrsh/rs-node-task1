@@ -35,12 +35,12 @@ const ioStreams = {
 }
 
 if (!shift) {
-    process.stderr.write('shift argument must be provided')
+    process.stderr.write('shift argument must be provided\n')
     process.exit(1)
 }
 
 if (!action) {
-    process.stderr.write('action argument must be provided')
+    process.stderr.write('action argument must be provided\n')
     process.exit(1)
 }
 
@@ -48,7 +48,7 @@ if (!input) {
     ioStreams.input = stdin
 } else if (input) {
     ioStreams.input = buildFileInputStream(input, () => {
-        process.stderr.write('can not open or access file')
+        process.stderr.write('can not open or access file\n')
         process.exit(1)
     })
 }
@@ -57,7 +57,7 @@ if (!output) {
     ioStreams.output = stdout
 } else if (output) {
     ioStreams.output = buildFileOutputStream(output, () => {
-        process.stderr.write('can not open or access file')
+        process.stderr.write('can not open or access file\n')
         process.exit(1)
     })
 }
